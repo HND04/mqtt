@@ -20,7 +20,7 @@ def mqtt_connect():
     client.subscribe("sensors/temperature")        # Subscribe to MQTT topic
     client.loop_start()                            # Start MQTT client loop
 
-def index(request):
+def indexs(request):
     mqtt_connect()  # Connect to MQTT broker
     # Render Django template with temperature data
     return render(request, 'render/indexs.html', context)
