@@ -16,7 +16,7 @@ def mqtt_callback(client, userdata, msg):
 def mqtt_connect():
     client = mqtt.Client()
     client.on_message = mqtt_callback
-    client.connect("mqtt.eclipse.org", 1883, 60)  # Connect to MQTT broker
+    client.connect("public.mqtthq.com", 1883, 60)  # Connect to MQTT broker
     client.subscribe("sensors/temperature")        # Subscribe to MQTT topic
     client.loop_start()                            # Start MQTT client loop
 
