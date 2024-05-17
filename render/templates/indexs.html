@@ -1,14 +1,43 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Monitor</title>
+    <title>Time of Day Greetings</title>
 </head>
 <body>
-    <h1>Temperature Monitor</h1>
-    <p>Current Temperature: {{ temperature }}</p>
+    <h1>Choose a Time of Day</h1>
+    <button id="morningButton">Morning</button>
+    <button id="afternoonButton">Afternoon</button>
+    <button id="nightButton">Night</button>
+
+    <h2>Result:</h2>
+    <p id="result"></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const csrfToken = '{{ csrf_token }}';
+
+            async function sendRequest(buttonType) {
+                const response = await fetch('{% url "handle_button" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify({ button_type: buttonType })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('result').textContent = data.result;
+                } else {
+                    document.getElementById('result').textContent = 'Error: ' + response.statusText;
+                }
+            }
+
+            document.getElementById('morningButton').addEventListener('click', () => sendRequest('morning'));
+            document.getElementById('afternoonButton').addEventListener('click', () => sendRequest('afternoon'));
+            document.getElementById('nightButton').addEventListener('click', () => sendRequest('night'));
+        });
+    </script>
 </body>
 </html>
