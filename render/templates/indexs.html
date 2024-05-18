@@ -1,15 +1,58 @@
-{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time of Day Greetings</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Light gray background color */
+            padding: 20px; /* Add some padding */
+            text-align: center; /* Center align text */
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333; /* Dark gray title color */
+            font-size: 2em; /* Larger font size */
+            margin-bottom: 20px; /* Add margin at the bottom */
+        }
+
+        button {
+            background-color: #3498db; /* Blue button background color */
+            color: white; /* White button text color */
+            border: none;
+            padding: 10px 20px; /* Add padding */
+            font-size: 1em; /* Medium font size */
+            margin: 10px; /* Add margin around buttons */
+            cursor: pointer;
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+        }
+
+        button:hover {
+            background-color: #2980b9; /* Darker blue color on hover */
+        }
+
+        #result {
+            font-size: 1.2em; /* Larger font size for result text */
+            margin-top: 20px; /* Add margin at the top */
+        }
+    </style>
 </head>
 <body>
     <h1>Choose a Time of Day</h1>
-    <button id="morningButton">Morning</button>
-    <button id="afternoonButton">Afternoon</button>
-    <button id="nightButton">Night</button>
+    <div class="button-container">
+        <button id="morningButton">Morning</button>
+        <button id="afternoonButton">Afternoon</button>
+        <button id="nightButton">Night</button>
+    </div>
 
     <h2>Result:</h2>
     <p id="result"></p>
